@@ -1,0 +1,27 @@
+cd bisection-method
+def f(x):
+    return x**3 - 3*x + 3
+
+def bisection(a, b, tol=1e-5, max_iter=100):
+    if f(a) * f(b) >= 0:
+        return "Interval tidak valid. f(a) dan f(b) harus memiliki tanda berbeda."
+    
+    iterasi = 0
+    while (b - a) / 2 > tol and iterasi < max_iter:
+        c = (a + b) / 2
+        if f(c) == 0:
+            return c
+        elif f(a) * f(c) < 0:
+            b = c
+        else:
+            a = c
+        iterasi += 1
+    
+    return c
+
+# Contoh penggunaan
+akar = bisection(-3, 0)
+print(f"Akar mendekati: {akar}")
+git add bisection_method.py
+git commit -m "Menambahkan metode bisection"
+git push origin main
